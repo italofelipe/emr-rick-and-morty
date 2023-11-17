@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 import { CHARACTERS_QUERY } from "@/graphql/query/characters";
 import { CharactersResponse } from "@/types/characters";
