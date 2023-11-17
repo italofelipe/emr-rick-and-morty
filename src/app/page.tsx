@@ -3,10 +3,12 @@
 import {
   ALL_CHARACTERS_QUERY,
   CHARACTERS_QUERY,
+  SEARCH_CHARACTERS_QUERY,
 } from "@/graphql/query/characters";
 import { CharactersResponse, Info } from "@/types/characters";
 import { useEffect, useState } from "react";
 import { Character } from "@/__generated__/graphql";
+import Form from "@/components/Form";
 import Pagination from "@/components/Pagination";
 
 import { useLazyQuery } from "@apollo/client";
@@ -21,6 +23,7 @@ const Home = () => {
     next: 2,
     prev: null,
   });
+
   const [error, setError] = useState(false);
 
   const [fetchAllCharacters] = useLazyQuery<CharactersResponse>(
@@ -53,6 +56,22 @@ const Home = () => {
         setError(true);
       },
       variables: { page: currentPage },
+    }
+  );
+
+  const [fetchCharactersByName] = useLazyQuery<CharactersResponse>(
+    SEARCH_CHARACTERS_QUERY,
+    {
+      onCompleted: (data) => {
+        console.log("Data", data);
+        setCharactersList(data.characters.results);
+        setRequestInfo(data.characters.info);
+        setLoading(false);
+      },
+      onError: () => {
+        setLoading(false);
+        setError(true);
+      },
     }
   );
 
@@ -90,11 +109,18 @@ const Home = () => {
     return null;
   };
 
+  const handleSearch = (value: string) => {
+    console.log("Search", value);
+    setLoading(true);
+    fetchCharactersByName({ variables: { filter: { name: value } } });
+  };
+
   return (
     <div>
       <h1>Rick and Morty - EMR Challenge</h1>
 
       <h2>Characters</h2>
+      <Form onSubmit={(value) => handleSearch(value)} />
 
       {renderContent()}
       <Pagination
