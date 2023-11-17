@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:storybook/recommended",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "plugin:storybook/recommended"],
   "rules": {
     "semi": ["error", "always"],
     "sort-imports": [
@@ -12,12 +8,12 @@
         "ignoreCase": false,
         "ignoreDeclarationSort": false,
         "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+        "memberSyntaxSortOrder": ["multiple", "all", "none", "single"],
         "allowSeparatedGroups": false
       }
     ],
 
-    "no-unused-vars": "error",
+    "no-unused-vars": "warn",
     "no-console": "warn"
   }
 }
