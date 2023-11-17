@@ -17,3 +17,22 @@ export const CHARACTERS_QUERY = gql`
     }
   }
 `;
+
+
+export const ALL_CHARACTERS_QUERY = gql`
+  query characters {
+    characters {
+      info {
+        count
+        pages
+        next
+        prev
+      }
+      results {
+        id
+        name
+        image
+      }
+    }
+  }
+`;
