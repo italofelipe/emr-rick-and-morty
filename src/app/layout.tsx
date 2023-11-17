@@ -1,21 +1,25 @@
+"use client";
 import { ApolloWrapper } from "@/lib/apollo-provider";
-import type { Metadata } from "next";
+import { GlobalStyles } from "@/theme/globalStyles";
+import { passionOne } from "@/fonts/passionOne";
 
-
-export const metadata: Metadata = {
+/* export const metadata: Metadata = {
   title: "EMR - Rick and Morty",
   description: "Desafio técnico da EMR",
-};
+}; */
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={passionOne.className}>
       <body>
-        <ApolloWrapper>{children}</ApolloWrapper>
+        <ApolloWrapper>
+          <GlobalStyles />
+          {children}
+        </ApolloWrapper>
       </body>
     </html>
   );
