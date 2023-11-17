@@ -7,7 +7,7 @@ import {
 
 export function client() {
   const httpLink = new HttpLink({
-    uri: process.env.GRAPHQL_API,
+    uri: "https://rickandmortyapi.com/graphql",
   });
 
   return new NextSSRApolloClient({

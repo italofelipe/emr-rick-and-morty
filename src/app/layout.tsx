@@ -1,4 +1,3 @@
-import "./globals.css";
 import { ApolloWrapper } from "@/lib/apollo-provider";
 import type { Metadata } from "next";
 
