@@ -36,3 +36,21 @@ export const ALL_CHARACTERS_QUERY = gql`
     }
   }
 `;
+
+export const SEARCH_CHARACTERS_QUERY = gql`
+  query characters($filter: FilterCharacter) {
+    characters(filter: $filter) {
+      info {
+        count
+        pages
+        next
+        prev
+      }
+      results {
+        id
+        name
+        image
+      }
+    }
+  }
+`;
