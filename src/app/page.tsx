@@ -1,18 +1,107 @@
 /* eslint-disable no-console */
 "use client";
-import { CHARACTERS_QUERY } from "@/graphql/query/characters";
-import { CharactersResponse } from "@/types/characters";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import {
+  ALL_CHARACTERS_QUERY,
+  CHARACTERS_QUERY,
+} from "@/graphql/query/characters";
+import { CharactersResponse, Info } from "@/types/characters";
+import { useEffect, useState } from "react";
+import { Character } from "@/__generated__/graphql";
+import Pagination from "@/components/Pagination";
+
+import { useLazyQuery } from "@apollo/client";
 
 const Home = () => {
-  const { data } = useSuspenseQuery<CharactersResponse>(CHARACTERS_QUERY, {
-    variables: { page: 1 },
+  const [currentPage, setCurrentPage] = useState(1);
+  const [charactersList, setCharactersList] = useState<Character[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [requestInfo, setRequestInfo] = useState<Info>({
+    count: 1,
+    pages: 1,
+    next: 2,
+    prev: null,
   });
-  console.log("Dados", data.characters.results);
+  const [error, setError] = useState(false);
+
+  const [fetchAllCharacters] = useLazyQuery<CharactersResponse>(
+    ALL_CHARACTERS_QUERY,
+    {
+      onCompleted: (data) => {
+        console.log("Data", data);
+        setCharactersList(data.characters.results);
+        setRequestInfo(data.characters.info);
+        setLoading(false);
+      },
+      onError: () => {
+        setLoading(false);
+        setError(true);
+      },
+    }
+  );
+
+  const [fetchCharactersByPage] = useLazyQuery<CharactersResponse>(
+    CHARACTERS_QUERY,
+    {
+      onCompleted: (data) => {
+        console.log("Data", data);
+        setCharactersList(data.characters.results);
+        setRequestInfo(data.characters.info);
+        setLoading(false);
+      },
+      onError: () => {
+        setLoading(false);
+        setError(true);
+      },
+      variables: { page: currentPage },
+    }
+  );
+
+  const handlePageChange = (page: number) => {
+    console.log("Clicadoo", page);
+    setCurrentPage(page);
+    setLoading(true);
+    fetchCharactersByPage({ variables: { page } });
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    fetchAllCharacters();
+  }, [fetchAllCharacters]);
+
+  const renderContent = () => {
+    if (loading) {
+      return <p>Carregando...</p>;
+    }
+
+    if (error) {
+      return <p>Ocorreu um erro ao carregar os dados.</p>;
+    }
+
+    if (charactersList.length > 0) {
+      return (
+        <ul>
+          {charactersList.map((character) => (
+            <li key={character.id}>{character.name}</li>
+          ))}
+        </ul>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <div>
-      <h1>Home page</h1>
+      <h1>Rick and Morty - EMR Challenge</h1>
+
+      <h2>Characters</h2>
+
+      {renderContent()}
+      <Pagination
+        currentPage={requestInfo.next - 1}
+        totalPages={requestInfo?.pages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
