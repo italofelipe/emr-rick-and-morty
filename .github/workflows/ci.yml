@@ -30,17 +30,24 @@ jobs:
   e2e_tests:
     runs-on: ubuntu-latest
     needs: lint_and_unit_tests
+    strategy:
+      fail-fast: false 
+      matrix:
+        containers: [1, 2]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-            build: npm run build
-            start: npm run dev
-
-      - name: End-to-End Tests
-        run: npm run test:e2e
+        
+          start: npm start
+          wait-on: 'http://localhost:3000' # Waits for above
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   analysis:
     runs-on: ubuntu-latest
