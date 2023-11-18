@@ -9,6 +9,7 @@ import { CharactersResponse, Info } from "@/types/characters";
 import { useEffect, useState } from "react";
 import { Character } from "@/__generated__/graphql";
 import Form from "@/components/Form";
+import Link from "next/link";
 import Pagination from "@/components/Pagination";
 
 import { useLazyQuery } from "@apollo/client";
@@ -100,7 +101,16 @@ const Home = () => {
       return (
         <ul>
           {charactersList.map((character) => (
-            <li key={character.id}>{character.name}</li>
+            <Link
+              href={{
+                pathname: `/character/${character.id}`,
+                query: character.name,
+                href: `/character/${character.name}`,
+              }}
+              key={character.id}
+            >
+              <li key={character.id}>{character.name}</li>
+            </Link>
           ))}
         </ul>
       );
