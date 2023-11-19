@@ -9,6 +9,7 @@ const Form = ({ onSubmit }: FormProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (inputValue.trim() === "") return;
     onSubmit(inputValue);
   };
   return (
