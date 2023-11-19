@@ -22,7 +22,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.config.js.jss.jsjest.config.js.jsig.js.js", "jest.config.mjs", "jest.config.mjs"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "jest.config.mjs",
+    "jest.setup.js"
+  ],
   "exclude": ["cypress.config.ts", "cypress", "node_modules"],
   "ts-node": {
     "compilerOptions": {
