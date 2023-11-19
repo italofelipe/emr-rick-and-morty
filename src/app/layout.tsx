@@ -1,6 +1,6 @@
 "use client";
 import { ApolloWrapper } from "@/lib/apollo-provider";
-import { GlobalStyles } from "@/theme/globalStyles";
+import { GlobalStyles } from "@/styles/globalStyles";
 import { passionOne } from "@/fonts/passionOne";
 
 /* export const metadata: Metadata = {
