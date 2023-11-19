@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     *,
     *::before,
     *::after {
-    box-sizing: border-box;
+        box-sizing: border-box;
     }
 
     /* Remove default margin */
@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
     blockquote,
     dl,
     dd {
-    margin: 0;
+        margin: 0;
     }
 
     /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -35,15 +35,19 @@ export const GlobalStyles = createGlobalStyle`
 
     /* Set core body defaults */
     body {
-    background: #F5F5F5;
-    min-height: 100vh;
-    text-rendering: optimizeSpeed;
-    line-height: 1.5;
+        background: #F5F5F5;
+        min-height: 100vh;
+        text-rendering: optimizeSpeed;
+        line-height: 1.5;
     }
 
     /* A elements that don't have a class get default styles */
     a:not([class]) {
-    text-decoration-skip-ink: auto;
+        text-decoration-skip-ink: auto;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 
     /* Make images easier to work with */
@@ -58,13 +62,13 @@ export const GlobalStyles = createGlobalStyle`
     button,
     textarea,
     select {
-    font: inherit;
+        font: inherit;
     }
 
     /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
     @media (prefers-reduced-motion: reduce) {
         html:focus-within {
-        scroll-behavior: auto;
+            scroll-behavior: auto;
         }
         
         *,
@@ -78,6 +82,6 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: #f5f5f5;
+        background: #489247;
     }
 `;
