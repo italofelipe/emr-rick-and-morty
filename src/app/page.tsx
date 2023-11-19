@@ -7,6 +7,8 @@ import {
 } from "@/graphql/query/characters";
 import { CharactersResponse, Info } from "@/types/characters";
 import { useEffect, useState } from "react";
+import Card from "@/components/Card";
+import { CardsList } from "@/components/CardsList/styles";
 import { Character } from "@/__generated__/graphql";
 import Form from "@/components/Form";
 import Link from "next/link";
@@ -99,7 +101,7 @@ const Home = () => {
 
     if (charactersList.length > 0) {
       return (
-        <ul>
+        <CardsList>
           {charactersList.map((character) => (
             <Link
               href={{
@@ -109,10 +111,14 @@ const Home = () => {
               }}
               key={character.id}
             >
-              <li key={character.id}>{character.name}</li>
+              <Card
+                onClick={() => {}}
+                character={character}
+                key={character.id}
+              />
             </Link>
           ))}
-        </ul>
+        </CardsList>
       );
     }
 
