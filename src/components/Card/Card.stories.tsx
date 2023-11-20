@@ -17,7 +17,6 @@ type Story = StoryObj<typeof meta>;
 
 export const CardComponent: Story = {
   args: {
-    onClick: () => {},
     character: characterResponseMock,
   },
   parameters: {
