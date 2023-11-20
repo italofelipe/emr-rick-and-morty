@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 "use client";
 import {
   ALL_CHARACTERS_QUERY,
@@ -49,7 +48,6 @@ const Home = () => {
     CHARACTERS_QUERY,
     {
       onCompleted: (data) => {
-        console.log("Data", data);
         setCharactersList(data.characters.results);
         setRequestInfo(data.characters.info);
         setLoading(false);
@@ -66,7 +64,6 @@ const Home = () => {
     SEARCH_CHARACTERS_QUERY,
     {
       onCompleted: (data) => {
-        console.log("Data", data);
         setCharactersList(data.characters.results);
         setRequestInfo(data.characters.info);
         setLoading(false);
@@ -79,7 +76,6 @@ const Home = () => {
   );
 
   const handlePageChange = (page: number) => {
-    console.log("Clicadoo", page);
     setCurrentPage(page);
     setLoading(true);
     fetchCharactersByPage({ variables: { page } });
@@ -111,11 +107,7 @@ const Home = () => {
               }}
               key={character.id}
             >
-              <Card
-                onClick={() => {}}
-                character={character}
-                key={character.id}
-              />
+              <Card character={character} key={character.id} />
             </Link>
           ))}
         </CardsList>
@@ -126,7 +118,6 @@ const Home = () => {
   };
 
   const handleSearch = (value: string) => {
-    console.log("Search", value);
     setLoading(true);
     fetchCharactersByName({ variables: { filter: { name: value } } });
   };
