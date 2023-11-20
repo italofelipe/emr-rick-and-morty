@@ -140,7 +140,7 @@ const Home = () => {
 
       {renderContent()}
       <Pagination
-        currentPage={requestInfo.next - 1}
+        currentPage={currentPage}
         totalPages={requestInfo?.pages}
         onPageChange={handlePageChange}
       />
