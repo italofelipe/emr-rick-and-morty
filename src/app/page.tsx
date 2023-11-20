@@ -32,7 +32,6 @@ const Home = () => {
     ALL_CHARACTERS_QUERY,
     {
       onCompleted: (data) => {
-        console.log("Data", data);
         setCharactersList(data.characters.results);
         setRequestInfo(data.characters.info);
         setLoading(false);
