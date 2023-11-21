@@ -6,7 +6,7 @@ describe('EMR spec', () => {
     cy.get('h1').contains('Rick and Morty - EMR Challenge');
   });
 
-  it('Verifica se a request GraphQL foi feita ao carregar a página', () => {
+  it('Verify if a GraphQL request was made when page loads', () => {
     cy.intercept('POST', '**/graphql').as('graphqlRequest');
 
 
