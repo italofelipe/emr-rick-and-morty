@@ -40,7 +40,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm run dev
-          wait-on: "http://localhost:3000" # Waits for above
+          wait-on: "http://localhost:3000"
           record: true
           parallel: true
         env:
@@ -59,9 +59,23 @@ jobs:
         with:
           args: -Dsonar.projectKey=italofelipe_emr-rick-and-morty
             -Dsonar.organization=sensoriumit
-  deploy:
+
+  publish_chromatic:
     runs-on: ubuntu-latest
     needs: analysis
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: publish_chromatic
     steps:
       - uses: actions/checkout@v2
       - name: Install Vercel CLI
