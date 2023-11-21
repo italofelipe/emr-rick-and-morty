@@ -32,3 +32,8 @@ CI/CD
 - Chromatic
 
 Deployed on: Vercel
+
+Links:
+- Chromatic: https://www.chromatic.com/build?appId=655d30ee36e9d34765731398&number=3
+- SonarCloud: https://sonarcloud.io/project/overview?id=italofelipe_emr-rick-and-morty
+- App em produção: https://emr-rick-and-morty.vercel.app/
