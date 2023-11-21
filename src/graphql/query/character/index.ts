@@ -8,7 +8,17 @@ export const CHARACTER_DETAILS_QUERY = gql`
       name
       species
       status
-      type
+      origin {
+        dimension
+        name
+        created
+      }
+      location {
+        dimension
+        id
+        name
+        type
+        }
    
     }
   }
