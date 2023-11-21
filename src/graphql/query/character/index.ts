@@ -18,8 +18,7 @@ export const CHARACTER_DETAILS_QUERY = gql`
         id
         name
         type
-        }
-   
+      }
     }
   }
 `;

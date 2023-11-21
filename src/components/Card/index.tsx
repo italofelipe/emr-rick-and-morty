@@ -7,7 +7,7 @@ type CardsProps = {
 
 const Card = ({ character }: CardsProps) => {
   return (
-    <CardContainer>
+    <CardContainer data-testid="character-card">
       <Image
         alt={character.name!}
         height={200}

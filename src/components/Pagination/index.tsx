@@ -71,7 +71,7 @@ const Pagination: React.FC<PaginationProps> = ({
           )}
           {numbers.map((number) => (
             <S.PageNumber
-              data-testid="page-number"
+              data-testid={`page-${number}`}
               key={number}
               onClick={() => onPageChange(number)}
               $isCurrentPage={number === currentPage}
