@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -7,8 +8,7 @@ const Container = styled.div`
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  max-width: 300px;
-  margin: 0 auto;
+  width: 30vw;
 `;
 
 const InfoRow = styled.div`
@@ -27,7 +27,12 @@ const InfoValue = styled.span`
   text-align: right;
 `;
 
+const CharacterImage = styled(Image)`
+  width: fit-content;
+  height: 100%;
+`;
 export {
+  CharacterImage,
   Container,
   InfoRow,
   InfoLabel,
