@@ -3,7 +3,6 @@ import Form from ".";
 describe("Form", () => {
   it("should render form with input and submit button", () => {
     const wrapper = render(<Form onSubmit={() => {}} />);
-    screen.logTestingPlaygroundURL();
     expect(wrapper.getByRole("textbox")).toBeInTheDocument();
     expect(
       wrapper.getByRole("button", { name: /procurar/i })

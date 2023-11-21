@@ -36,7 +36,7 @@ describe('EMR spec', () => {
   });
 
   it("Should navigate to second page", () => {
-    cy.get('[data-testid="page-2"]').click();
+    cy.get('.page-2').click();
 
     cy.get('[data-testid="character-card"]').should('have.length', 20);
 

@@ -61,8 +61,9 @@ describe("Page tests", () => {
     fireEvent.change(input, { target: { value: inputValue } });
     fireEvent.click(button);
 
-    const loadingText = screen.getByText(/carregando\.\.\./i);
-
-    expect(loadingText).toBeInTheDocument();
+    const loadingGif = screen.getByRole("img", {
+      name: /rick and morty portal gif while the page loads/i,
+    });
+    expect(loadingGif).toBeInTheDocument();
   });
 });
