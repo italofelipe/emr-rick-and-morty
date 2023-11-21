@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Form from ".";
 describe("Form", () => {
   it("should render form with input and submit button", () => {

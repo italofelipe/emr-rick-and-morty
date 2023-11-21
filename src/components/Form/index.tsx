@@ -19,24 +19,22 @@ const Form = ({ onSubmit }: FormProps) => {
     setInputValue(value);
   };
   return (
-    <>
-      <StyledForm onSubmit={handleSubmit}>
-        <Container>
-          <InputWrapper>
-            <Label htmlFor="character">Nome do personagem</Label>
-            <Input
-              id="character"
-              placeholder="Rick Sanchez"
-              value={inputValue}
-              onChange={(value) => handleInputChange(value as string)}
-            />
-          </InputWrapper>
-          <Button type="submit" disabled={!inputValue}>
-            Procurar
-          </Button>
-        </Container>
-      </StyledForm>
-    </>
+    <StyledForm onSubmit={handleSubmit}>
+      <Container>
+        <InputWrapper>
+          <Label htmlFor="character">Nome do personagem</Label>
+          <Input
+            id="character"
+            placeholder="Rick Sanchez"
+            value={inputValue}
+            onChange={(value) => handleInputChange(value as string)}
+          />
+        </InputWrapper>
+        <Button type="submit" disabled={!inputValue}>
+          Procurar
+        </Button>
+      </Container>
+    </StyledForm>
   );
 };
 

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { ALL_CHARACTERS_QUERY } from "@/graphql/query/characters";
 import Home from "./page";
 import { MockedProvider } from "@apollo/client/testing";

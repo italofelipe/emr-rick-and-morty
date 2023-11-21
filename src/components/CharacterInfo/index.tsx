@@ -38,7 +38,7 @@ const CharacterInfo = ({
       </InfoRow>
       <InfoRow>
         <InfoLabel>Origem:</InfoLabel>
-        <InfoValue>{origin?.name || "Desconhecida"}</InfoValue>
+        <InfoValue>{origin?.name ?? "Desconhecida"}</InfoValue>
       </InfoRow>
       <InfoRow>
         <InfoLabel>Localização:</InfoLabel>
