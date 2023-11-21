@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from "react";
 import { Container, InputWrapper, Label, StyledForm } from "./styles";
 import Button from "../Button";
 import Input from "../Input";
+import { useState } from "react";
 
 type FormProps = {
   onSubmit: (value: string) => void;
