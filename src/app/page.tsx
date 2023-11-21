@@ -121,6 +121,8 @@ const Home = () => {
           ))}
         </CardsList>
       );
+    } else {
+      return <p>Nenhum personagem corresponde aos critérios de busca :(</p>;
     }
 
     return null;
