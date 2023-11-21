@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { CHARACTER_DETAILS_QUERY } from "@/graphql/query/character";
 import { Character } from "@/__generated__/graphql";
 import CharacterInfo from "@/components/CharacterInfo";
+import { Container } from "./styles";
+import Image from "next/image";
 import Link from "next/link";
+import gif from "../../../../assets/loading-gif-1.gif";
 import { useLazyQuery } from "@apollo/client";
-
 type PageParams = {
   params: {
     character: string;
@@ -22,7 +24,6 @@ const CharacterPage = ({ params }: PageParams) => {
     CharacterVariables
   >(CHARACTER_DETAILS_QUERY, {
     onCompleted: (data) => {
-      console.log("Data do detalhes", data);
       setCharacter(data.character);
 
       setLoading(false);
@@ -38,18 +39,31 @@ const CharacterPage = ({ params }: PageParams) => {
     fetchCharactersByPage();
   }, [fetchCharactersByPage]);
   return (
-    <div>
-      <Link href="/">Voltar</Link>
-      <CharacterInfo
-        image={character?.image!}
-        location={character?.location}
-        name={character?.name || ""}
-        origin={character?.origin}
-        species={character?.species}
-        status={character?.status}
-        gender={character?.gender}
-      />
-    </div>
+    <Container>
+      <Link data-testid="back-button" href="/">
+        Voltar
+      </Link>
+
+      {loading ? (
+        <Image
+          alt="Rick and Morty Portal gif while the page loads"
+          src={gif}
+          width={200}
+          height={200}
+        />
+      ) : (
+        <CharacterInfo
+          image={character?.image!}
+          location={character?.location}
+          name={character?.name || ""}
+          origin={character?.origin}
+          species={character?.species}
+          status={character?.status}
+          gender={character?.gender}
+        />
+      )}
+      {error && <p>Erro ao carregar o personagem</p>}
+    </Container>
   );
 };
 export default CharacterPage;

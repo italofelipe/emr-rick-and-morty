@@ -5,13 +5,16 @@ import {
   SEARCH_CHARACTERS_QUERY,
 } from "@/graphql/query/characters";
 import { CharactersResponse, Info } from "@/types/characters";
+import { Container, TitleContainer } from "./styles";
 import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { CardsList } from "@/components/CardsList/styles";
 import { Character } from "@/__generated__/graphql";
 import Form from "@/components/Form";
+import Image from "next/image";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
+import gif from "../../assets/loading-gif-1.gif";
 
 import { useLazyQuery } from "@apollo/client";
 
@@ -87,7 +90,14 @@ const Home = () => {
 
   const renderContent = () => {
     if (loading) {
-      return <p>Carregando...</p>;
+      return (
+        <Image
+          alt="Rick and Morty Portal gif while the page loads"
+          src={gif}
+          width={200}
+          height={200}
+        />
+      );
     }
 
     if (error) {
@@ -122,10 +132,11 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Rick and Morty - EMR Challenge</h1>
+    <Container>
+      <TitleContainer>
+        <h1>Rick and Morty - EMR Challenge</h1>
+      </TitleContainer>
 
-      <h2>Characters</h2>
       <Form onSubmit={(value) => handleSearch(value)} />
 
       {renderContent()}
@@ -134,7 +145,7 @@ const Home = () => {
         totalPages={requestInfo?.pages}
         onPageChange={handlePageChange}
       />
-    </div>
+    </Container>
   );
 };
 

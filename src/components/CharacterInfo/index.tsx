@@ -1,6 +1,11 @@
-import { Container, InfoLabel, InfoRow, InfoValue } from "./styles";
+import {
+  CharacterImage,
+  Container,
+  InfoLabel,
+  InfoRow,
+  InfoValue,
+} from "./styles";
 import { CharacterInfoProps } from "./types";
-import Image from "next/image";
 
 const CharacterInfo = ({
   gender,
@@ -14,7 +19,7 @@ const CharacterInfo = ({
   return (
     <Container>
       <h1>{name}&apos; Info</h1>
-      <Image
+      <CharacterImage
         alt={name!}
         height={200}
         loading="lazy"
@@ -33,7 +38,7 @@ const CharacterInfo = ({
       </InfoRow>
       <InfoRow>
         <InfoLabel>Origem:</InfoLabel>
-        <InfoValue>{origin?.dimension}</InfoValue>
+        <InfoValue>{origin?.name || "Desconhecida"}</InfoValue>
       </InfoRow>
       <InfoRow>
         <InfoLabel>Localização:</InfoLabel>
