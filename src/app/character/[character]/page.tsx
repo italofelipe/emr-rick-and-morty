@@ -3,7 +3,8 @@ import { CharacterResponse, CharacterVariables } from "@/types/character";
 import { useEffect, useState } from "react";
 import { CHARACTER_DETAILS_QUERY } from "@/graphql/query/character";
 import { Character } from "@/__generated__/graphql";
-import Image from "next/image";
+import CharacterInfo from "@/components/CharacterInfo";
+import Link from "next/link";
 import { useLazyQuery } from "@apollo/client";
 
 type PageParams = {
@@ -38,17 +39,16 @@ const CharacterPage = ({ params }: PageParams) => {
   }, [fetchCharactersByPage]);
   return (
     <div>
-      {character && (
-        <div>
-          <h1>{character.name}</h1>
-          <Image
-            src={character.image!}
-            alt={character.name!}
-            width={200}
-            height={200}
-          />
-        </div>
-      )}
+      <Link href="/">Voltar</Link>
+      <CharacterInfo
+        image={character?.image!}
+        location={character?.location}
+        name={character?.name || ""}
+        origin={character?.origin}
+        species={character?.species}
+        status={character?.status}
+        gender={character?.gender}
+      />
     </div>
   );
 };
