@@ -85,7 +85,6 @@ describe("Pagination", () => {
   });
 
   it("should display the correct page numbers when there is only one page", () => {
-    // Arrange
     const currentPage = 1;
     const totalPages = 1;
     const onPageChange = jest.fn();
@@ -97,7 +96,6 @@ describe("Pagination", () => {
       />
     );
 
-    // Assert
     expect(screen.getByText("1")).toBeInTheDocument();
   });
 });
