@@ -1,11 +1,9 @@
 import { Container, InputWrapper, Label, StyledForm } from "./styles";
 import Button from "../Button";
+import { FormProps } from "./types";
 import Input from "../Input";
 import { useState } from "react";
 
-type FormProps = {
-  onSubmit: (value: string) => void;
-};
 const Form = ({ onSubmit }: FormProps) => {
   const [inputValue, setInputValue] = useState("");
 
