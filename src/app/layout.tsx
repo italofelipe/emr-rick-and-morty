@@ -5,9 +5,9 @@ import { passionOne } from "@/fonts/passionOne";
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" className={passionOne.className}>
       <body>

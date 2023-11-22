@@ -135,8 +135,6 @@ const Home = () => {
         </NotFoundContainer>
       );
     }
-
-    return null;
   };
 
   const handleSearch = (value: string) => {
