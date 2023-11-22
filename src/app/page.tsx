@@ -5,8 +5,9 @@ import {
   SEARCH_CHARACTERS_QUERY,
 } from "@/graphql/query/characters";
 import { CharactersResponse, Info } from "@/types/characters";
-import { Container, TitleContainer } from "./styles";
+import { Container, NotFoundContainer, TitleContainer } from "./styles";
 import { useEffect, useState } from "react";
+import Button from "@/components/Button";
 import Card from "@/components/Card";
 import { CardsList } from "@/components/CardsList/styles";
 import { Character } from "@/__generated__/graphql";
@@ -88,6 +89,11 @@ const Home = () => {
     fetchAllCharacters();
   }, [fetchAllCharacters]);
 
+  const clearSearch = () => {
+    setLoading(true);
+    fetchAllCharacters();
+  };
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -122,7 +128,12 @@ const Home = () => {
         </CardsList>
       );
     } else {
-      return <p>Nenhum personagem corresponde aos critérios de busca :(</p>;
+      return (
+        <NotFoundContainer>
+          <p>Nenhum personagem corresponde aos critérios de busca :(</p>
+          <Button onClick={() => clearSearch()}>Limpar busca</Button>
+        </NotFoundContainer>
+      );
     }
 
     return null;
@@ -142,11 +153,13 @@ const Home = () => {
       <Form onSubmit={(value) => handleSearch(value)} />
 
       {renderContent()}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={requestInfo?.pages}
-        onPageChange={handlePageChange}
-      />
+      {charactersList.length > 0 ? (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={requestInfo?.pages}
+          onPageChange={handlePageChange}
+        />
+      ) : null}
     </Container>
   );
 };
