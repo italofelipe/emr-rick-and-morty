@@ -45,7 +45,7 @@ describe("Pagination", () => {
         onPageChange={onPageChange}
       />
     );
-    const previousButton = screen.getByText("Previous");
+    const previousButton = screen.getByText("Anterior");
 
     fireEvent.click(previousButton);
 
@@ -63,7 +63,7 @@ describe("Pagination", () => {
         onPageChange={onPageChange}
       />
     );
-    const nextButton = screen.getByText("Next");
+    const nextButton = screen.getByText("Próxima");
 
     fireEvent.click(nextButton);
 

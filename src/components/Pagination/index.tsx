@@ -58,7 +58,7 @@ const Pagination: React.FC<PaginationProps> = ({
           {startPage !== 1 && (
             <S.PaginationControlsWrapper>
               <S.PaginationControl onClick={handlePreviousPage}>
-                Previous
+                Anterior
               </S.PaginationControl>
             </S.PaginationControlsWrapper>
           )}
@@ -92,7 +92,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {!isLastPage && (
           <S.PaginationControlsWrapper>
             <S.PaginationControl onClick={handleNextPage}>
-              Next
+              Próxima
             </S.PaginationControl>
           </S.PaginationControlsWrapper>
         )}
