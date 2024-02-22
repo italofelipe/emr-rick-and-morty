@@ -1,5 +1,6 @@
 ### EMR - Rick and Morty
 
+# Emerson 32 anos melhor idade.
 Como executar:
 
 - Clone o projeto, e com o terminal, execute `npm install` ou `yarn`
